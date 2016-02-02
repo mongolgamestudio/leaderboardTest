@@ -10,7 +10,7 @@ handlers.ReportScoreCurrentSession = function(args){
 	var updateUserStats = server.UpdateUserStatistics({
         PlayFabId: currentPlayerId,
         UserStatistics: {
-            currentSessionID: score
+            [currentSessionID]: score
         }
     });
 
