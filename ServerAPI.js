@@ -1,21 +1,20 @@
 ﻿
-//handlers.Test = function (args){
-//	 var message = "Hello " + currentPlayerId + "!";
-//	 return { messageValue: message };
-//};
-
+//Reporting score to Server
 handlers.ReportScoreCurrentSession = function(args){
 	var score = args.score;
 	var currentSession = server.GetTitleData ({ Keys: [ "CurrentSeason" ] });
-	log.info (currentSession);
+	currentSession = "SessionScore" + currentSession;
+
 	var message = currentSession.Data["CurrentSeason"] + " : " + score;
 	log.info (message);
-	return { messageValue: message };
-//	var updateUserDataResult = server.UpdateUserInternalData({
-//        PlayFabId: currentPlayerId,
-//        Data: {
-//            lastLevelCompleted: level
-//        }
-//    });
+	var updateUserStats = server.UpdateUserStatistics({
+        PlayFabId: currentPlayerId,
+        UserStatistics: {
+            currentSession: score
+        }
+    });
 
+	log.debug ( "User " + currentPlayerId + " submitted " + score + " score to " + currentSession);
+
+	return { messageValue: message };
 };
