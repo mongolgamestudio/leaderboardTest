@@ -8,9 +8,8 @@ handlers.ReportScoreCurrentSession = function(args){
 	var score = args.score;
 	var currentSession = server.GetTitleData ({ Keys: [ "CurrentSeason" ] });
 	log.info (currentSession);
-	log.info (currentSession.data.Data.CurrentSeason + " : " + score);
-	var message = currentSession.data.Data.CurrentSeason + " : " + score;
-
+	var message = currentSession.Data["CurrentSeason"] + " : " + score;
+	log.info (message);
 	return { messageValue: message };
 //	var updateUserDataResult = server.UpdateUserInternalData({
 //        PlayFabId: currentPlayerId,
