@@ -3,14 +3,14 @@
 handlers.ReportScoreCurrentSession = function(args){
 	var score = args.score;
 	var currentSession = server.GetTitleData ({ Keys: [ "CurrentSeason" ] });
-	currentSession = "SessionScore" + currentSession;
+	var currentSessionID = "SessionScore" + currentSession.Data["CurrentSeason"];
 
 	var message = currentSession.Data["CurrentSeason"] + " : " + score;
 	log.info (message);
 	var updateUserStats = server.UpdateUserStatistics({
         PlayFabId: currentPlayerId,
         UserStatistics: {
-            currentSession: score
+            currentSessionID: score
         }
     });
 
