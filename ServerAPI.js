@@ -7,11 +7,12 @@ handlers.ReportScoreCurrentSession = function(args){
 
 	var message = currentSession.Data["CurrentSeason"] + " : " + score;
 	log.info (message);
+	var data = {};
+	data[currentSessionID] = score;
+
 	var updateUserStats = server.UpdateUserStatistics({
         PlayFabId: currentPlayerId,
-        UserStatistics: {
-            [currentSessionID]: score
-        }
+        UserStatistics: data
     });
 
 	log.debug ( "User " + currentPlayerId + " submitted " + score + " score to " + currentSession);
