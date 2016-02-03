@@ -22,6 +22,7 @@ handlers.ReportScoreCurrentSession = function(args){
 		}
 	}else{
 		changed = true;
+		log.info ("Not exists: " + playerStats.currentSessionID );
 	}
   	
   	if(changed == true){
