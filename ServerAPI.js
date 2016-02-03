@@ -7,13 +7,29 @@ handlers.ReportScoreCurrentSession = function(args){
 
 	var message = currentSession.Data["CurrentSeason"] + " : " + score;
 	log.info (message);
+
 	var data = {};
 	data[currentSessionID] = score;
 
-	var updateUserStats = server.UpdateUserStatistics({
-        PlayFabId: currentPlayerId,
-        UserStatistics: data
-    });
+	var playerStats = server.GetUserStatistics({
+        PlayFabId: currentPlayerId
+    }).UserStatistics;
+  	
+	var changed = false;
+	if( playerStats.currentSessionID ){
+		if( playerStats.currentSessionID > score ){
+			 changed = true;
+		}
+	}else{
+		changed = true;
+	}
+  	
+  	if(changed == true){
+		var updateUserStats = server.UpdateUserStatistics({
+	        PlayFabId: currentPlayerId,
+	        UserStatistics: data
+	    });
+	}
 
 	log.debug ( "User " + currentPlayerId + " submitted " + score + " score to " + currentSession);
 
