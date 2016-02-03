@@ -19,11 +19,11 @@ handlers.ReportScoreCurrentSession = function(args){
 	if( playerStats[currentSessionID] ){
 		if( parseFloat(playerStats[currentSessionID]) < parseFloat (score) ){
 			 changed = true;
-			 message = message + " Exists: " + playerStats[currentSessionID] );
+			 message = message + " Exists: " + playerStats[currentSessionID] ;
 		}
 	}else{
 		changed = true;
-		message = message + " Not exists: " + playerStats[currentSessionID] );
+		message = message + " Not exists: " + playerStats[currentSessionID];
 	}
   	
   	if(changed == true){
