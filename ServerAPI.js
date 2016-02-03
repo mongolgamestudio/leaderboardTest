@@ -17,7 +17,7 @@ handlers.ReportScoreCurrentSession = function(args){
   	
 	var changed = false;
 	if( playerStats.currentSessionID ){
-		if( playerStats.currentSessionID > score ){
+		if( parseFloat( playerStats.currentSessionID ) < parseFloat (score ) ){
 			 changed = true;
 		}
 	}else{
